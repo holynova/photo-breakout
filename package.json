@@ -1,0 +1,19 @@
+{
+  "name": "photo-breakout",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npm run build && wrangler dev --config wrangler.jsonc",
+    "check": "node --check src/app.js && node --check src/segment.js && npm run build",
+    "deploy:check": "npm run build && wrangler deploy --dry-run --config wrangler.jsonc",
+    "stage:portfolio": "npm run build && node scripts/stage-portfolio.mjs"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "0.10.32"
+  },
+  "devDependencies": {
+    "wrangler": "4.162.0"
+  }
+}
