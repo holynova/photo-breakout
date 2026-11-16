@@ -7,6 +7,7 @@ const {version} = JSON.parse(await readFile(path('package.json'), 'utf8'));
 await rm(path('dist/'), {recursive: true, force: true});
 await cp(path('public/'), path('dist/'), {recursive: true});
 await cp(path('src/'), path('dist/src/'), {recursive: true});
+await cp(path('assets/qr.png'), path('dist/share-qr.png'));
 
 const runtime = 'node_modules/@mediapipe/tasks-vision/';
 await mkdir(path('dist/vendor/'));

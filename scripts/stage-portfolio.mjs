@@ -8,7 +8,7 @@ if (!portfolio) {
 }
 
 const config = JSON.parse(await readFile(resolve(portfolio, 'wrangler.jsonc'), 'utf8'));
-if (config.name !== 'xiaosang-portfolio' || config.assets?.directory !== '.') {
+if (config.name !== 'xiaosang-portfolio' || !['.', './.cloudflare-build'].includes(config.assets?.directory)) {
   throw new Error('Expected the xiaosang-portfolio Worker source.');
 }
 
