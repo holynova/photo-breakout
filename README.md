@@ -1,42 +1,76 @@
-# 破框 · Photo Breakout
+<p align="center">
+  <img src="./assets/readme/hero.svg" width="100%" alt="破框 Photo Breakout — 照片本地抠像与破框网格编辑器：人物跃出白色分隔线">
+</p>
 
-打开网页即可试用示例，或跟着三步教程导入自己的照片。浏览器自动识别人像，让人物遮住白色分隔线。横纵格数各自可调，也可调整线宽和外框、用画笔修整蒙版、导出 PNG。支持一次导入多张照片，在本机历史中切换。
+<p align="center">
+  <a href="https://xiaosang.cc/photo-breakout/">▶ 在线体验 Try Online</a>
+  ·
+  <a href="https://github.com/holynova/photo-breakout">GitHub 仓库</a>
+</p>
 
-Try the sample photo or follow the three-step guide. The editor segments people on-device so they appear in front of the white grid. Adjust rows, columns and line width, touch up the mask, and export a PNG. Import multiple photos and switch between local edits.
+破框是一款照片本地抠像与破框网格编辑器：打开网页试用示例照片，或跟着三步教程导入自己的照片；浏览器自动识别人像，让人物遮住白色分隔线，做出人物"跃出"网格的效果。横纵格数、线宽、外框都可调，调好导出 PNG。照片全程在本机处理。
 
-<img src="./assets/screenshot.png" width="390" alt="手机工作台中的大图示例">
+Photo Breakout is a local photo editor for breakout grids: try the sample photo or follow the three-step guide with your own. The browser segments the person on-device so they appear in front of the white grid — a "breaking out" effect. Rows, columns, line width, and frame are all adjustable; export as PNG. Photos never leave your machine.
 
-[桌面工作台截图 / Desktop screenshot](./assets/screenshot-desktop.png)
+## 截图 / Screenshots
 
-- [Cloudflare Demo](https://xiaosang.cc/photo-breakout/)
-- [GitHub Repo](https://github.com/holynova/photo-breakout)
+<p align="center">
+  <img src="./assets/readme/screenshot-desktop.png" width="100%" alt="桌面工作台：雪山示例照片，红衣人物跃出 3×3 白色网格，右侧是网格调整面板">
+</p>
 
-<img src="./assets/qr.png" width="180" alt="扫码打开破框">
+<p align="center">
+  <img src="./assets/readme/screenshot-mobile.png" width="300" alt="手机工作台：同一张示例照片，底部是横格、竖格、线宽、外框内缩控件">
+</p>
 
-## 本地运行 / Run locally
+## 功能 / Features
 
-```sh
+- **本地自动抠像**：Google MediaPipe SelfieMulticlass 在浏览器内识别人像（头发、皮肤、衣物、配饰均为前景），人物自动置于白线前面。
+- **网格可调**：横格、竖格各自增减（默认 3 × 3）；线宽 0.3–4（默认 1.4）；外框内缩 1–18（默认 6）。
+- **画笔修整**：涂抹照片，标记挡住白线的位置；也支持键盘修整。
+- **多张导入**：一次导入多张照片，在本机历史中切换；历史保存在当前浏览器。
+- **导出 PNG**：长边最高 1800 像素。
+- **三步教程**：内置示例照片与三步引导，第一次打开就能上手。
+
+## 隐私与性能 / Privacy & Performance
+
+- 照片和蒙版都在本机处理，历史保存在当前浏览器；清除网站数据会移除历史。
+- 首次打开自选照片时加载 MediaPipe 模型及运行库（模型约 16 MB，之后走浏览器缓存）；只在需要抠像时加载，不随页面加载。
+- Umami 记录页面访问和分享工具操作。
+
+## 本地运行 / Run Locally
+
+```bash
 npm ci
 npm run dev
 ```
 
-照片和蒙版在本机处理，历史保存在当前浏览器，清除网站数据会移除历史。Umami 记录页面访问和分享工具操作。首次打开自选照片时会加载 MediaPipe 模型及运行库，模型约 16 MB。PNG 导出长边最高 1800 像素。
+检查：`npm run check`（语法检查 + 构建）。
 
-## 发布 / Deploy
+## 技术 / Tech
 
-Cloudflare Workers Static Assets 由 `xiaosang-portfolio` 提供，公开路径为 `/photo-breakout/`。从 `main` 构建，并将产物同步到作品集 `master`。
+- 零框架：原生 HTML/CSS/JavaScript；MediaPipe Tasks Vision（`@mediapipe/tasks-vision` 0.10.32）CPU 推理，工作图最长边 512 像素。
+- 模型：Google MediaPipe SelfieMulticlass 256×256 float32，Apache 2.0，见 `public/model/SOURCE.txt`；运行库同样 Apache 2.0。
+- 截图中的测试照片由 ImageGen 生成。
 
-```sh
-npm run check
-npm run deploy:check
-npm run stage:portfolio -- /path/to/holynova.github.io
+```
+public/index.html   入口
+src/app.js          编辑器：网格、画笔、历史、导出
+src/segment.js      MediaPipe 人像分割
+src/history.js      本机历史
+src/share.js        分享
+src/download.js     PNG 导出
+public/model/       SelfieMulticlass 模型（约 16 MB）+ 授权说明
+public/sample/      示例照片与引导图
 ```
 
-在作品集仓库提交并推送 `photo-breakout/` 后，从同一提交按作品集 README 组装部署目录（包括该 Worker 上的其他应用），再执行手动部署。
+## English
 
-```sh
-npx --yes wrangler@4.128.0 deploy --dry-run --config wrangler.jsonc
-npx --yes wrangler@4.128.0 deploy --config wrangler.jsonc
-```
+**Photo Breakout** is a local photo editor for breakout grids and vertical strips: the browser segments the person on-device so they appear in front of the white grid lines.
 
-截图中的测试照片由 ImageGen 生成。人像分割使用 Google MediaPipe SelfieMulticlass，运行库和模型采用 Apache 2.0。 [MediaPipe 模型卡](https://storage.googleapis.com/mediapipe-assets/Model%20Card%20Multiclass%20Segmentation.pdf)
+- **On-device segmentation**: Google MediaPipe SelfieMulticlass (256×256 float32, Apache 2.0) runs in the browser via Tasks Vision on CPU; hair, skin, clothing, and accessories all count as foreground.
+- **Adjustable grid**: rows and columns independently (default 3 × 3), line width 0.3–4, frame inset 1–18.
+- **Brush touch-up**: paint the photo to mark where the person covers the white lines; keyboard refinement supported.
+- **Multi-photo**: import several photos at once and switch between local edits; history lives in the current browser.
+- **Export**: PNG, longest edge up to 1800 px.
+- **Privacy**: photos and masks are processed locally; the ~16 MB model loads only when you segment your own photo, then comes from browser cache.
+- **Run it**: `npm ci && npm run dev`. Zero frameworks — vanilla HTML/CSS/JS.
