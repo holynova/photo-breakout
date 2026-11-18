@@ -1,18 +1,18 @@
+<p align="right"><a href="README.en.md">English</a></p>
+
 <p align="center">
   <img src="./assets/readme/hero.svg" width="100%" alt="破框 Photo Breakout — 照片本地抠像与破框网格编辑器：人物跃出白色分隔线">
 </p>
 
 <p align="center">
-  <a href="https://xiaosang.cc/photo-breakout/">▶ 在线体验 Try Online</a>
+  <a href="https://xiaosang.cc/photo-breakout/">▶ 在线体验</a>
   ·
   <a href="https://github.com/holynova/photo-breakout">GitHub 仓库</a>
 </p>
 
 破框是一款照片本地抠像与破框网格编辑器：打开网页试用示例照片，或跟着三步教程导入自己的照片；浏览器自动识别人像，让人物遮住白色分隔线，做出人物"跃出"网格的效果。横纵格数、线宽、外框都可调，调好导出 PNG。照片全程在本机处理。
 
-Photo Breakout is a local photo editor for breakout grids: try the sample photo or follow the three-step guide with your own. The browser segments the person on-device so they appear in front of the white grid — a "breaking out" effect. Rows, columns, line width, and frame are all adjustable; export as PNG. Photos never leave your machine.
-
-## 截图 / Screenshots
+## 截图
 
 <p align="center">
   <img src="./assets/readme/screenshot-desktop.png" width="100%" alt="桌面工作台：雪山示例照片，红衣人物跃出 3×3 白色网格，右侧是网格调整面板">
@@ -22,7 +22,7 @@ Photo Breakout is a local photo editor for breakout grids: try the sample photo 
   <img src="./assets/readme/screenshot-mobile.png" width="300" alt="手机工作台：同一张示例照片，底部是横格、竖格、线宽、外框内缩控件">
 </p>
 
-## 功能 / Features
+## 功能
 
 - **本地自动抠像**：Google MediaPipe SelfieMulticlass 在浏览器内识别人像（头发、皮肤、衣物、配饰均为前景），人物自动置于白线前面。
 - **网格可调**：横格、竖格各自增减（默认 3 × 3）；线宽 0.3–4（默认 1.4）；外框内缩 1–18（默认 6）。
@@ -31,13 +31,13 @@ Photo Breakout is a local photo editor for breakout grids: try the sample photo 
 - **导出 PNG**：长边最高 1800 像素。
 - **三步教程**：内置示例照片与三步引导，第一次打开就能上手。
 
-## 隐私与性能 / Privacy & Performance
+## 隐私与性能
 
 - 照片和蒙版都在本机处理，历史保存在当前浏览器；清除网站数据会移除历史。
 - 首次打开自选照片时加载 MediaPipe 模型及运行库（模型约 16 MB，之后走浏览器缓存）；只在需要抠像时加载，不随页面加载。
 - Umami 记录页面访问和分享工具操作。
 
-## 本地运行 / Run Locally
+## 本地运行
 
 ```bash
 npm ci
@@ -46,7 +46,7 @@ npm run dev
 
 检查：`npm run check`（语法检查 + 构建）。
 
-## 技术 / Tech
+## 技术
 
 - 零框架：原生 HTML/CSS/JavaScript；MediaPipe Tasks Vision（`@mediapipe/tasks-vision` 0.10.32）CPU 推理，工作图最长边 512 像素。
 - 模型：Google MediaPipe SelfieMulticlass 256×256 float32，Apache 2.0，见 `public/model/SOURCE.txt`；运行库同样 Apache 2.0。
@@ -62,15 +62,3 @@ src/download.js     PNG 导出
 public/model/       SelfieMulticlass 模型（约 16 MB）+ 授权说明
 public/sample/      示例照片与引导图
 ```
-
-## English
-
-**Photo Breakout** is a local photo editor for breakout grids and vertical strips: the browser segments the person on-device so they appear in front of the white grid lines.
-
-- **On-device segmentation**: Google MediaPipe SelfieMulticlass (256×256 float32, Apache 2.0) runs in the browser via Tasks Vision on CPU; hair, skin, clothing, and accessories all count as foreground.
-- **Adjustable grid**: rows and columns independently (default 3 × 3), line width 0.3–4, frame inset 1–18.
-- **Brush touch-up**: paint the photo to mark where the person covers the white lines; keyboard refinement supported.
-- **Multi-photo**: import several photos at once and switch between local edits; history lives in the current browser.
-- **Export**: PNG, longest edge up to 1800 px.
-- **Privacy**: photos and masks are processed locally; the ~16 MB model loads only when you segment your own photo, then comes from browser cache.
-- **Run it**: `npm ci && npm run dev`. Zero frameworks — vanilla HTML/CSS/JS.
