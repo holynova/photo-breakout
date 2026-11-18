@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="破框 Photo Breakout — 照片本地抠像与破框网格编辑器：人物跃出白色分隔线">
+  <title>破框 Photo Breakout</title>
+  <desc>照片本地自动抠像与破框网格编辑器：浏览器识别人像，让人物遮住白色分隔线。</desc>
+
+  <rect width="1200" height="420" rx="20" fill="#F4F2EC"/>
+  <rect width="1200" height="420" rx="20" fill="none" stroke="#DDD8CC" stroke-width="1.5"/>
+
+  <!-- left copy -->
+  <text x="64" y="92" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" font-weight="600" letter-spacing="4" fill="#4A6B4A">照片本地抠像 · 破框网格</text>
+  <text x="62" y="168" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="66" font-weight="700" fill="#2B2B26">破框</text>
+  <text x="64" y="208" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="600" letter-spacing="5" fill="#6B655A">PHOTO BREAKOUT</text>
+  <text x="64" y="260" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="22" fill="#4A453C">浏览器自动抠人像，让人物跃出白色网格</text>
+  <text x="64" y="294" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#6B655A">照片全程在本机处理，不上传服务器</text>
+
+  <!-- badges -->
+  <g font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" font-weight="600">
+    <rect x="64" y="322" width="110" height="36" rx="18" fill="#4A6B4A"/>
+    <text x="119" y="346" text-anchor="middle" fill="#FFFFFF">本机处理</text>
+    <rect x="186" y="322" width="128" height="36" rx="18" fill="#FFFFFF" stroke="#CFC9BB" stroke-width="1.5"/>
+    <text x="250" y="346" text-anchor="middle" fill="#4A453C">MediaPipe</text>
+    <rect x="326" y="322" width="150" height="36" rx="18" fill="#FFFFFF" stroke="#CFC9BB" stroke-width="1.5"/>
+    <text x="401" y="346" text-anchor="middle" fill="#4A453C">导出 1800px</text>
+  </g>
+
+  <!-- right: breakout demo -->
+  <g id="breakout">
+    <rect x="660" y="48" width="476" height="324" rx="16" fill="#FFFFFF"/>
+    <rect x="660" y="48" width="476" height="324" rx="16" fill="none" stroke="#DDD8CC" stroke-width="1.5"/>
+    <!-- 3x3 photo grid -->
+    <g>
+      <rect x="700" y="76" width="120" height="84" fill="#A8C8E0"/>
+      <rect x="828" y="76" width="120" height="84" fill="#9DBEDD"/>
+      <rect x="956" y="76" width="120" height="84" fill="#A8C8E0"/>
+      <rect x="700" y="168" width="120" height="84" fill="#B9CBD8"/>
+      <rect x="828" y="168" width="120" height="84" fill="#C9D4DC"/>
+      <rect x="956" y="168" width="120" height="84" fill="#B9CBD8"/>
+      <rect x="700" y="260" width="120" height="84" fill="#D8DEE2"/>
+      <rect x="828" y="260" width="120" height="84" fill="#C9D4DC"/>
+      <rect x="956" y="260" width="120" height="84" fill="#D8DEE2"/>
+      <!-- mountain triangles -->
+      <g fill="#FFFFFF" opacity="0.85">
+        <path d="M 700 252 L 760 190 L 820 252 Z"/>
+        <path d="M 956 252 L 1016 196 L 1076 252 Z"/>
+        <path d="M 828 344 L 888 288 L 948 344 Z"/>
+      </g>
+    </g>
+    <!-- person breaking out: coral jacket figure -->
+    <g id="person">
+      <!-- reaching arm (drawn first, behind body) -->
+      <path d="M 790 250 L 700 300" stroke="#3A3A34" stroke-width="26" stroke-linecap="round"/>
+      <circle cx="694" cy="304" r="18" fill="#3A3A34"/>
+      <!-- body -->
+      <path d="M 770 344 L 766 240 Q 764 196 812 192 L 856 192 Q 900 196 898 240 L 892 344 Z" fill="#E4573D"/>
+      <path d="M 770 344 L 766 240 Q 764 196 812 192 L 856 192 Q 900 196 898 240 L 892 344 Z" fill="none" stroke="#C7452B" stroke-width="3"/>
+      <!-- backpack strap -->
+      <path d="M 788 200 L 830 344" stroke="#3A3A34" stroke-width="10" opacity="0.85"/>
+      <!-- head -->
+      <circle cx="832" cy="160" r="34" fill="#F2C9A4"/>
+      <!-- beanie -->
+      <path d="M 798 158 A 34 34 0 0 1 866 158 L 866 146 A 34 34 0 0 0 798 146 Z" fill="#F4F2EC"/>
+      <rect x="798" y="140" width="68" height="14" rx="7" fill="#F4F2EC"/>
+      <!-- goggles -->
+      <rect x="806" y="150" width="52" height="16" rx="8" fill="#2B2B26"/>
+      <!-- smile -->
+      <path d="M 820 178 Q 832 186 844 178" fill="none" stroke="#8A5A3A" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+    <!-- caption -->
+    <g font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+      <text x="700" y="366" font-size="17" fill="#6B655A">示例照片 · 3 × 3 网格</text>
+      <text x="1076" y="366" font-size="17" font-weight="600" fill="#4A6B4A" text-anchor="end">人物在白线前面</text>
+    </g>
+  </g>
+</svg>
