@@ -12,6 +12,9 @@
 
 Photo Breakout is a local photo editor for breakout grids: try the sample photo or follow the three-step guide with your own. The browser segments the person on-device so they appear in front of the white grid — a "breaking out" effect. Rows, columns, line width, and frame are all adjustable; export as PNG. Photos never leave your machine.
 
+
+[Watch the 18-second introduction](https://github.com/holynova/photo-breakout/releases/tag/v1.6.2)
+
 ## Screenshots
 
 <p align="center">
